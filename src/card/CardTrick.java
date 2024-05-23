@@ -9,24 +9,56 @@ package card;
  * and then asks the user to pick a card and searches the array of cards
  * for the match to the user's card. To be used as starting code in ICE 1
  * @author srinivsi
+ * modifier = Piyush Kumar
+ * Student ID - 991717611
  */
+
+import java.util.Random;
+import java.util.Scanner;
+
 public class CardTrick {
     
     public static void main(String[] args)
     {
+        Random rand = new Random();
         Card[] magicHand = new Card[7];
         
         for (int i=0; i<magicHand.length; i++)
         {
             Card c = new Card();
-            //c.setValue(insert call to random number generator here)
-            //c.setSuit(Card.SUITS[insert call to random number between 0-3 here])
+            int randValue = rand.nextInt(13)+1;
+            int randSuit = rand.nextInt(4);
+            c.setValue(randValue);
+            c.setSuit(Card.SUITS[randSuit]);
+            magicHand[i] = c;
+            System.out.println(c.getValue() + " " + c.getSuit());
         }
         
-        //insert code to ask the user for Card value and suit, create their card
-        // and search magicHand here
-        //Then report the result here
-        // add one luckcard hard code 2,clubs
+        Scanner s1 = new Scanner(System.in);
+        
+        System.out.println("Enter a card value (1-13): ");
+        int cardInput = s1.nextInt();
+        
+        System.out.println("Enter a suit (0-3 where 0=Hearts, 1=Diamonds, 2=Spades, 3=Clubs )");
+        int suitInput = s1.nextInt();
+        
+        Boolean result = false;
+        for(Card card: magicHand){
+            if((card.getValue() == cardInput) && (card.getSuit().equals(Card.SUITS[suitInput]))){
+                result = true;
+                break;
+            }
+            
+        
+        
+    }
+        if(result == true){
+            System.out.println("Congratulations, your card in the magic hands");
+        }
+        else{
+                System.out.println("Sorry, your card is not in the magic hand");
+        }
+        
     }
     
 }
